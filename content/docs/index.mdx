@@ -1,13 +1,58 @@
 ---
-title: Hello World
-description: Your first document
+title: Introduction
+description: Decode Viem and Wagmi errors into clean, human-readable messages — including custom revert reasons from your own ABIs.
+icon: House
 ---
 
-Welcome to the docs! You can start writing documents in `/content/docs`.
+> Decode Viem and Wagmi errors into clean, human-readable messages — including custom `revert` reasons from your own ABIs.
 
-## What is Next?
+## Why viem-error-parser?
+
+Viem and Wagmi throw deeply-nested error chains. Pulling a useful message out of one — and decoding custom `revert MyError(uint256)` payloads on top of `Error(string)` and `Panic(uint256)` — is verbose and easy to get wrong.
+
+`viem-error-parser` does the boring part:
+
+- Walks the `cause` chain (and `errors[]`) safely with cycle and depth guards.
+- Extracts revert data from every common shape: `data`, `rawData`, `returnData`, `output`, or hex embedded in messages.
+- Decodes the two standard Solidity revert types out of the box.
+- Decodes **your** custom errors when you register your ABIs.
+- Classifies non-revert problems too — user rejection, gas, network, RPC, EIP-1193 codes, and more.
+- Ships ESM + CJS + types, **tree-shakable**, with a `react` subpath for a `useErrorParser` hook.
+
+It is a thin (~22 KB ESM) layer on top of `viem`. The only runtime dependency is `viem` itself.
+
+## 30-second example
+
+```ts
+import { forViem } from 'viem-error-parser';
+
+const decoder = forViem();
+
+try {
+  await walletClient.writeContract({ /* ... */ });
+} catch (error) {
+  console.error(decoder.decode(error).message);
+  // "ERC20InsufficientBalance(sender=0x..., balance=5n, needed=100n)"
+  // or "The transaction was rejected by the user."
+}
+```
+
+## Pages
 
 <Cards>
-  <Card title="Learn more about Next.js" href="https://nextjs.org/docs" />
-  <Card title="Learn more about Fumadocs" href="https://fumadocs.dev" />
+  <Card title="Installation" href="/docs/installation" description="Install and peer-dependency notes." />
+  <Card title="Quick Start" href="/docs/quick-start" description="Viem / Wagmi / React in 30 seconds each." />
+  <Card title="Custom ABIs" href="/docs/custom-abis" description="Decode revert MyError(...) from your contracts." />
+  <Card title="Result Shape" href="/docs/result-shape" description="ParseResult discriminated union and type guards." />
+  <Card title="Classifier" href="/docs/classifier" description="Non-revert errors, full rule table, decoder pipeline." />
+  <Card title="Advanced Usage" href="/docs/advanced-usage" description="AbiRegistry and ErrorDecoder by hand." />
+  <Card title="TypeScript" href="/docs/typescript" description="Branded types and the zero-runtime ./types entry." />
+  <Card title="Bundle Size" href="/docs/bundle-size" description="What tree-shaking actually removes." />
+  <Card title="API Reference" href="/docs/api-reference" description="Every public export." />
 </Cards>
+
+## Repository
+
+- Source: [github.com/isaacnewton123/viem-error-parser](https://github.com/isaacnewton123/viem-error-parser)
+- npm: [npmjs.com/package/viem-error-parser](https://www.npmjs.com/package/viem-error-parser)
+- Issues: [github.com/isaacnewton123/viem-error-parser/issues](https://github.com/isaacnewton123/viem-error-parser/issues)

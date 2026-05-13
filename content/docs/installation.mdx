@@ -1,0 +1,41 @@
+---
+title: Installation
+description: Install viem-error-parser and configure peer dependencies.
+icon: Package
+---
+
+```bash
+pnpm add viem-error-parser viem
+# or
+npm install viem-error-parser viem
+# or
+yarn add viem-error-parser viem
+```
+
+## Peer dependencies
+
+| Package | Range       | Required for                                         |
+| ------- | ----------- | ---------------------------------------------------- |
+| `viem`  | `>= 2.0.0` | Always required (uses viem's `decodeErrorResult`).   |
+| `react` | `>= 18.0.0` | Optional. Only needed for `viem-error-parser/react`. |
+
+Wagmi consumers don't need to install anything extra — Wagmi already depends on viem.
+
+## Node and runtime
+
+- Node `>= 18.18.0` (matches viem's own minimum).
+- Bun, Deno (with the npm specifier), and modern browsers are supported via the ESM build.
+- The package ships dual ESM (`.js`) and CJS (`.cjs`) plus full `.d.ts` declarations.
+
+## Subpath exports
+
+| Path                          | What you get                                                            |
+| ----------------------------- | ----------------------------------------------------------------------- |
+| `viem-error-parser`           | The full public API (decoder + classifier + registry + presets).        |
+| `viem-error-parser/wagmi`     | `forWagmi`, `getWagmiErrorMessage`, plus `ErrorDecoder`, `AbiRegistry`. |
+| `viem-error-parser/react`     | `useErrorParser` hook and the minimum types/helpers you need with it.   |
+| `viem-error-parser/types`     | Type-only entry. Zero runtime cost when imported with `import type`.    |
+
+## Next
+
+Continue with [Quick Start](/docs/quick-start).

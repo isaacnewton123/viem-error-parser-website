@@ -1,0 +1,18 @@
+{
+  "title": "Documentation",
+  "pages": [
+    "index",
+    "installation",
+    "quick-start",
+    "---Guides---",
+    "custom-abis",
+    "result-shape",
+    "classifier",
+    "advanced-usage",
+    "---TypeScript & Performance---",
+    "typescript",
+    "bundle-size",
+    "---Reference---",
+    "api-reference"
+  ]
+}
