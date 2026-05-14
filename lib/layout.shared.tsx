@@ -7,7 +7,8 @@ export function baseOptions(): BaseLayoutProps {
     nav: {
       title: (
         <div className="flex items-center gap-2">
-          <Image src="/logo.svg" alt="viem-error-parser logo" width={24} height={24} />
+          <Image src="/logo-light.png" alt="viem-error-parser logo" width={24} height={24} className="dark:hidden" />
+          <Image src="/logo-dark.png" alt="viem-error-parser logo" width={24} height={24} className="hidden dark:block" />
           <span className="font-semibold">{appName}</span>
         </div>
       ),

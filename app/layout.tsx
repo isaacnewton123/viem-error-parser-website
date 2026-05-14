@@ -29,6 +29,9 @@ export const metadata: Metadata = {
     description:
       'Decode Viem and Wagmi errors into clean, human-readable messages — including custom revert reasons from your own ABIs.',
   },
+  appleWebApp: {
+    title: 'viem-error-parser',
+  },
 };
 
 export default function Layout({ children }: LayoutProps<'/'>) {

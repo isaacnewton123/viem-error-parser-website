@@ -85,11 +85,18 @@ export default function HomePage() {
         <div className="mx-auto max-w-5xl px-4 py-24 text-center sm:py-32">
           <div className="mb-6 flex justify-center">
             <Image
-              src="/logo.svg"
+              src="/logo-light.png"
               alt="viem-error-parser"
               width={100}
               height={100}
-              className="drop-shadow-lg"
+              className="drop-shadow-lg dark:hidden"
+            />
+            <Image
+              src="/logo-dark.png"
+              alt="viem-error-parser"
+              width={100}
+              height={100}
+              className="hidden drop-shadow-lg dark:block"
             />
           </div>
 
